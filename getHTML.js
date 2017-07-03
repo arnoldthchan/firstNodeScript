@@ -1,10 +1,10 @@
 var https = require('https');
-function getAndPrintHTML(options){
-// This function should use a buffering technique
-// to append each chunk of data to a variable as it is received,
-//  and then console.log the data once all of the data has been received.
-// console.log(`Host: ${requestOptions.host}\nPath: ${requestOptions.path}`);
 var dataTotal = '';
+
+function getHTML(options,callback){
+// The function definition will now accept a callback as a second parameter.
+// function body will invoke (call) the callback when the data is fully received
+// in place of the original console.log.
 
   https.get(options, function (response) {
 
@@ -21,14 +21,19 @@ var dataTotal = '';
     // (the `end` of the stream)
     response.on('end', function() {
       console.log('Response stream complete.');
-      console.log(dataTotal);
+      // console.log(dataTotal);
+      printHTML(dataTotal);
     });
   })
 }
 
+function printHTML (html) {
+  console.log(html);
+}
+
 var requestOptions = {
     host: 'sytantris.github.io',
-    path: '/http-examples/step3.html'
+    path: '/http-examples/step4.html'
   };
 
-getAndPrintHTML(requestOptions);
+getHTML(requestOptions, printHTML());

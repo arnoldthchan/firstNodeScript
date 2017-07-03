@@ -1,11 +1,10 @@
 var https = require('https');
-var dataTotal = '';
 
 function getHTML(options,callback){
 // The function definition will now accept a callback as a second parameter.
 // function body will invoke (call) the callback when the data is fully received
 // in place of the original console.log.
-
+  var dataTotal = '';
   https.get(options, function (response) {
 
     // set encoding of received data to UTF-8
@@ -25,15 +24,14 @@ function getHTML(options,callback){
       printHTML(dataTotal);
     });
   })
-}
+};
 
 function printHTML (html) {
   console.log(html);
 }
-
 var requestOptions = {
     host: 'sytantris.github.io',
-    path: '/http-examples/step4.html'
+    path: '/http-examples/step2.html'
   };
 
 getHTML(requestOptions, printHTML());
